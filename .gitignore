@@ -58,6 +58,7 @@ working/
 .vscode/
 .ipynb_checkpoints/
 .env
+.venv
 env
 venv
 
