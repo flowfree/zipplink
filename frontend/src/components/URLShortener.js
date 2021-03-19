@@ -36,7 +36,9 @@ export default function URLShortener() {
           <button 
             className="btn btn-primary"
             onClick={handleShortenUrl}
-          >Shorten URL</button>
+          >
+            Shorten URL
+          </button>
         </div>
 
         <div className="form-text">{helpText}</div>
