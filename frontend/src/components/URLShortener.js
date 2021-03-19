@@ -1,7 +1,18 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function URLShortener() {
   const [url, setUrl] = useState('https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html')
+  const [helpText, setHelpText] = useState('')
+  const urlInput = useRef(null)
+
+  useEffect(() => {
+    if (url.startsWith('https://zipp.link')) {
+      urlInput.current.select()
+      setHelpText('Press CTRL+C to copy your short URL.')
+    } else {
+      setHelpText('')
+    }
+  }, [url])
 
   function handleShortenUrl(e) {
     e.preventDefault()
@@ -17,8 +28,9 @@ export default function URLShortener() {
             type="text" 
             name="url" 
             value={url}
+            ref={urlInput}
             onChange={e => setUrl(e.target.value)}
-            className="form-control form-control-lg"
+            className="form-control form-control-lg shadow-none"
             placeholder="Paste your long URL"
           />
           <button 
@@ -26,6 +38,9 @@ export default function URLShortener() {
             onClick={handleShortenUrl}
           >Shorten URL</button>
         </div>
+
+        <div className="form-text">{helpText}</div>
+
       </form>
     </div>
   )
