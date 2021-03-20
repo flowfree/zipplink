@@ -62,5 +62,5 @@ working/
 build/
 env
 venv
-deploy_to_s3.sh
+build_and_deploy_to_s3.sh
 
