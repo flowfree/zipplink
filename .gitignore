@@ -59,6 +59,7 @@ working/
 .ipynb_checkpoints/
 .env
 .venv
+build/
 env
 venv
 
