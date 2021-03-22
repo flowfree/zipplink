@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1a934063c3d1621f897741d25570548963168906c8133dbf853e43f606cad9b9"
+            "sha256": "4a05d0edfcd0ab7b1980c76715ffbceaa0aee4693ff2e22069816829ea0a7248"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,6 +31,14 @@
             ],
             "index": "pypi",
             "version": "==3.1.7"
+        },
+        "django-cors-headers": {
+            "hashes": [
+                "sha256:1ac2b1213de75a251e2ba04448da15f99bcfcbe164288ae6b5ff929dc49b372f",
+                "sha256:96069c4aaacace786a34ee7894ff680780ec2644e4268b31181044410fecd12e"
+            ],
+            "index": "pypi",
+            "version": "==3.7.0"
         },
         "psycopg2-binary": {
             "hashes": [
@@ -303,10 +311,10 @@
         },
         "troposphere": {
             "hashes": [
-                "sha256:04b51b5ec9596a1c74c44cf21cf133ad3650461704ba893fca6e1b4e98627a0b"
+                "sha256:b0ab144b989e1e1c4698e601008bd5f7fbabd0629b4588cb57d3583f8aa6edc9"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
-            "version": "==2.6.4"
+            "version": "==2.7.0"
         },
         "urllib3": {
             "hashes": [

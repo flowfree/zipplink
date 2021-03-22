@@ -3,7 +3,10 @@ from .base import *
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '50yiur6t10.execute-api.us-west-2.amazonaws.com',
+    'zipp.link',
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -18,3 +21,12 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD')
     }
 }
+
+# Django CORS headers
+# https://github.com/adamchainz/django-cors-headers
+# ------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = [
+    'https://50yiur6t10.execute-api.us-west-2.amazonaws.com',
+    'https://zipp.link',
+    'https://api.zipp.link',
+]

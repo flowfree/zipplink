@@ -9,6 +9,7 @@ zappa = "*"
 [packages]
 django = "*"
 psycopg2-binary = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.8"

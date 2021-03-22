@@ -14,3 +14,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Django CORS headers
+# https://github.com/adamchainz/django-cors-headers
+# ------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+]
