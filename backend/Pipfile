@@ -5,11 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 zappa = "*"
+pytest = "*"
+pytest-django = "*"
+freezegun = "*"
+pytest-freezegun = "*"
 
 [packages]
 django = "*"
 psycopg2-binary = "*"
 django-cors-headers = "*"
+django-rest-framework = "*"
 
 [requires]
 python_version = "3.8"

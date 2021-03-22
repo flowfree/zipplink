@@ -30,3 +30,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://zipp.link',
     'https://api.zipp.link',
 ]
+
+# URL Shortener app config
+# -------------------------------------------------------------------
+URL_SHORTENER_PREFIX = f'https://zipp.link'
+URL_SHORTENER_SALT = 3457327

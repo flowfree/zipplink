@@ -16,18 +16,29 @@ Including another URLconf
 from datetime import datetime
 from django.urls import path
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import routers
+
+from apps.urlshortener.views import URLViewSet, redirect_short_url
 
 
+@api_view()
 def home(request):
-    return JsonResponse({'message': 'API is up and running.'})
+    return Response({'message': 'API is up and running.'})
 
 
+@api_view()
 def server_time(request):
     t = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
-    return JsonResponse({'server_time': t})
+    return Response({'server_time': t})
 
 
-urlpatterns = [
-    path('', home, name='home'),
-    path('server_time', server_time, name='server_time'),
+router = routers.SimpleRouter(trailing_slash=False)
+router.register('urls', URLViewSet)
+
+urlpatterns = router.urls + [
+    path('', home),
+    path('server_time', server_time),
+    path('<slug:slug>', redirect_short_url),
 ]

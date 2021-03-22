@@ -22,3 +22,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
 ]
+
+# URL Shortener app config
+# -------------------------------------------------------------------
+URL_SHORTENER_PREFIX = f'http://localhost:8000'
+URL_SHORTENER_SALT = 3452147
