@@ -1,22 +1,41 @@
-import { useState, useRef, useEffect } from 'react'
+import axios from 'axios'
+import { useEffect, useState, useRef } from 'react'
 
 export default function URLShortener() {
-  const [url, setUrl] = useState('https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html')
+  const [isMounted, setIsMounted] = useState(false)
+  const [url, setUrl] = useState('')
   const [helpText, setHelpText] = useState('')
+  const [error, setError] = useState('')
   const urlInput = useRef(null)
 
   useEffect(() => {
-    if (url.startsWith('https://zipp.link')) {
+    setIsMounted(true)
+    setHelpText('')
+    if (url.startsWith('http://localhost') || url.startsWith('https://zipp.link')) {
       urlInput.current.select()
       setHelpText('Press CTRL+C or CMD+C to copy your short URL.')
-    } else {
-      setHelpText('')
+    }
+    return () => {
+      setIsMounted(false)
     }
   }, [url])
 
   function handleShortenUrl(e) {
     e.preventDefault()
-    setUrl('https://zipp.link/ax1eb')
+    const serverUrl = 'http://localhost:8000'
+    axios
+      .post(`${serverUrl}/urls`, { long_url: url })
+      .then(response => {
+        if (isMounted) {
+          setUrl(response.data.short_url);
+          setError('');
+        }
+      })
+      .catch(error => {
+        if (error.response.data && error.response.data.long_url && isMounted) {
+          setError(error.response.data.long_url)
+        }
+      });
   }
 
   return (
@@ -41,7 +60,16 @@ export default function URLShortener() {
           </button>
         </div>
 
-        <div className="form-text">{helpText}</div>
+        {helpText && (
+          <div className="form-text text-muted" role="note">{helpText}</div>
+        )}
+
+        {error && (
+          <div className="alert alert-danger alert-dismissible text-start mt-3" role="alert">
+            <strong>Heads up!</strong> {error}
+            <button type="button" className="btn-close" data-bs-dismiss="alert" onClick={() => setError('')}></button>
+          </div>
+        )}
 
       </form>
     </div>
