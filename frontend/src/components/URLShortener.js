@@ -8,7 +8,7 @@ export default function URLShortener() {
   useEffect(() => {
     if (url.startsWith('https://zipp.link')) {
       urlInput.current.select()
-      setHelpText('Press CTRL+C or COMMAND+C to copy your short URL.')
+      setHelpText('Press CTRL+C or CMD+C to copy your short URL.')
     } else {
       setHelpText('')
     }
