@@ -21,6 +21,15 @@
           <p id="help-text" class="form-text text-muted"></p>
         </form>
 
+        <div id="server-error" class="alert alert-danger d-none">
+          <strong>Something went wrong.</strong>
+          <hr>
+          <p>
+            We encountered an error while processing your request. We apologize for the inconvenience.
+            <br>Please reload the page and try again.
+          </p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -32,6 +41,7 @@
   const helpText = document.getElementById('help-text');
   const invalidFeedback = document.getElementById('invalid-feedback');
   const button = document.getElementById('button');
+  const serverErrorAlert = document.getElementById('server-error');
   const baseUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
   
   function handleShortenURL(e) {
@@ -41,6 +51,7 @@
       return;
     }
     disableButton();
+    hideServerErrorAlert();
     axios.post(baseUrl + '/urls', { long_url: url })
       .then(response => {
         textInput.value = response.data.short_url;
@@ -50,6 +61,8 @@
         if (error.response && error.response.data && error.response.data.long_url) {
           textInput.classList.add('is-invalid');
           invalidFeedback.innerText = error.response.data.long_url[0];
+        } else {
+          displayServerErrorAlert();
         }
       })
       .then(() => {
@@ -59,9 +72,9 @@
 
   function highlightTextfield() {
     textInput.classList.remove('is-invalid');
-    helpText.innerText = '';
-    invalidFeedback.innerText = '';
-
+    clearHelpText();
+    clearInvalidFeedback();
+    hideServerErrorAlert();
     const url = textInput.value;
     if (url.startsWith('localhost') || url.startsWith('zipp.link')) {
       textInput.select();
@@ -79,10 +92,25 @@
     button.innerText = 'Shorten URL';
   }
 
+  function clearHelpText() {
+    helpText.innerText = '';
+  }
+
+  function clearInvalidFeedback() {
+    invalidFeedback.innerText = '';
+  }
+
+  function displayServerErrorAlert() {
+    serverErrorAlert.classList.remove('d-none');
+  }
+
+  function hideServerErrorAlert() {
+    serverErrorAlert.classList.add('d-none');
+  }
+
   form.onsubmit = handleShortenURL;
   textInput.oninput = highlightTextfield;
   button.onclick = handleShortenURL;
-  enableButton();
 
 </script>
 </body>
