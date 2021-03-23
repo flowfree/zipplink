@@ -50,17 +50,18 @@
     if (url.includes('//zipp.link')) {
       return;
     }
-    disableButton();
+    clearTextInputError();
+    clearHelpText();
     hideServerErrorAlert();
+    disableButton();
     axios.post(baseUrl + '/urls', { long_url: url })
       .then(response => {
         textInput.value = response.data.short_url;
-        highlightTextfield();
+        highlightTextInput();
       })
       .catch(error => {
         if (error.response && error.response.data && error.response.data.long_url) {
-          textInput.classList.add('is-invalid');
-          invalidFeedback.innerText = error.response.data.long_url[0];
+          setTextInputError(error.response.data.long_url[0])
         } else {
           displayServerErrorAlert();
         }
@@ -70,16 +71,25 @@
       })
   }
 
-  function highlightTextfield() {
-    textInput.classList.remove('is-invalid');
+  function highlightTextInput() {
+    clearTextInputError();
     clearHelpText();
-    clearInvalidFeedback();
     hideServerErrorAlert();
     const url = textInput.value;
     if (url.startsWith('localhost') || url.startsWith('zipp.link')) {
       textInput.select();
-      helpText.innerText = 'Press CTRL+C or CMD+C to copy your short URL.';
+      setHelpText('Press CTRL+C or CMD+C to copy your short URL.');
     } 
+  }
+
+  function setTextInputError(errorMessage) {
+    textInput.classList.add('is-invalid');
+    invalidFeedback.innerText = errorMessage;
+  }
+
+  function clearTextInputError() {
+    textInput.classList.remove('is-invalid');
+    invalidFeedback.innerText = '';
   }
 
   function disableButton() {
@@ -92,12 +102,12 @@
     button.innerText = 'Shorten URL';
   }
 
-  function clearHelpText() {
-    helpText.innerText = '';
+  function setHelpText(msg) {
+    helpText.innerText = msg;
   }
 
-  function clearInvalidFeedback() {
-    invalidFeedback.innerText = '';
+  function clearHelpText() {
+    helpText.innerText = '';
   }
 
   function displayServerErrorAlert() {
@@ -109,7 +119,7 @@
   }
 
   form.onsubmit = handleShortenURL;
-  textInput.oninput = highlightTextfield;
+  textInput.oninput = highlightTextInput;
   button.onclick = handleShortenURL;
 
 </script>
