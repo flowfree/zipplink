@@ -15,10 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.http import HttpResponse
-
-
-def home(request):
-    return HttpResponse('ZippLink is under development. Please come back soon!')
+from django.views.generic.base import TemplateView
     
     
 def greet(request, name):
@@ -26,6 +23,6 @@ def greet(request, name):
 
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('greet/<slug:name>', greet, name='greet'),
 ]
