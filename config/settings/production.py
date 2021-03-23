@@ -1,14 +1,14 @@
-import os 
-from .base import * 
+from .base import *
+import os
 
-SECRET_KEY = 'abcdef'
+
+SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
-
 # Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-# -----------------------------------------------------------------------
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# -------------------------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -19,3 +19,8 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD')
     }
 }
+
+# URL Shortener app config
+# -------------------------------------------------------------------
+URL_SHORTENER_PREFIX = 'zipp.link'
+URL_SHORTENER_SALT = 3457327
