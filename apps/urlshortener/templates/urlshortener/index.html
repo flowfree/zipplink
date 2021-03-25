@@ -71,7 +71,7 @@
   function handleShortenURL(e) {
     e.preventDefault();
     const url = textInput.value;
-    if (url.includes('//zipp.link')) {
+    if (url.startsWith('zipp.link') || url.includes('//zipp.link')) {
       return;
     }
     clearTextInputError();
