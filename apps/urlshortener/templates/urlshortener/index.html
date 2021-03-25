@@ -75,6 +75,8 @@
     if (url.startsWith('zipp.link') || url.includes('//zipp.link')) {
       highlightTextInput();
       return;
+    } else if (url.trim() === '') {
+      return;
     }
     clearTextInputError();
     clearHelpText();
