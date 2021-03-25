@@ -89,3 +89,7 @@ Run the unit tests
 Type the command below on your local machine to run the unit tests:
 
     pipenv run pytest
+
+License
+-------
+MIT
