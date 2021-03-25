@@ -72,6 +72,7 @@
     e.preventDefault();
     const url = textInput.value;
     if (url.startsWith('zipp.link') || url.includes('//zipp.link')) {
+      highlightTextInput();
       return;
     }
     clearTextInputError();
