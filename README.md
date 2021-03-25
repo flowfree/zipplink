@@ -86,6 +86,6 @@ For more information about Zappa, please consult with [the documentation](https:
 
 Run the unit tests
 ------------------
-Type the command below to run the unit tests:
+Type the command below on your local machine to run the unit tests:
 
     pipenv run pytest
