@@ -17,7 +17,7 @@ Installation on local machine
 
         pipenv install --dev
 
-3.  Create a new file named `.env` in the project's root directory. You need to specify the `SECRET_KEY` var:
+3.  Copy the `.env.example` file to `.env` in the project's root directory. You need to specify the `SECRET_KEY` var:
 
         SECRET_KEY=<some random string>
 
