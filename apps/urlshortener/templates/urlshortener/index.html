@@ -72,12 +72,10 @@
   function handleShortenURL(e) {
     e.preventDefault();
     const url = textInput.value;
-    if (url.startsWith('zipp.link') || url.includes('//zipp.link')) {
+    if (url.trim() === '' || url.startsWith('zipp.link') || url.includes('//zipp.link')) {
       highlightTextInput();
       return;
-    } else if (url.trim() === '') {
-      return;
-    }
+    } 
     clearTextInputError();
     clearHelpText();
     hideServerErrorAlert();
@@ -122,7 +120,7 @@
 
   function disableButton() {
     button.disabled = true;
-    button.innerText = 'Retrieving URL...';
+    button.innerText = 'Retrieving your URL...';
   }
 
   function enableButton() {
