@@ -2,7 +2,7 @@ from .base import *
 
 # Hardcoded secret key for development only
 # -------------------------------------------------------------------
-SECRET_KEY = '12345'
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 

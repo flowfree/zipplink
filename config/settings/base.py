@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+env = environ.Env()
+with open(BASE_DIR / '.env') as f:
+    environ.Env.read_env(f)
 
 # Application definition
 
@@ -105,4 +110,6 @@ STATIC_URL = '/static/'
 # -------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'http://zipp.link',
+    'https://zipp.link',
 ]
