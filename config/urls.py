@@ -15,6 +15,7 @@ Including another URLconf
 """
 from datetime import datetime
 from django.urls import path, include
+from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -30,3 +31,10 @@ urlpatterns = router.urls + [
     path('', TemplateView.as_view(template_name='urlshortener/index.html'), name='urlshortener'),
     path('<slug:slug>', redirect_short_url, name='redirect_short_url'),
 ]
+
+
+def handle404(request, exception):
+    return render(request, '404.html', status=404)
+
+
+handler404 = handle404

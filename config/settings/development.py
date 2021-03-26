@@ -3,7 +3,7 @@ from .base import *
 # Hardcoded secret key for development only
 # -------------------------------------------------------------------
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # Database
