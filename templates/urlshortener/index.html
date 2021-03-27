@@ -11,6 +11,10 @@
       width: auto;
       padding: 0 15px;
     }
+    .noscript.alert {
+      margin-top: -70px;
+      z-index: 999;
+    }
     form {
       margin-top: 175px;
     }
@@ -26,6 +30,7 @@
         <div class="col-8">
 
           <form id="form" method="post" action="" novalidate>
+            {% csrf_token %}
             <h1 class="text-center display-6 mb-3">ZippLink</h1>
             <div class="input-group">
               <input type="text" id="url" name="url" class="form-control form-control-lg shadow-none" placeholder="Paste your long URL" />
@@ -42,6 +47,14 @@
               inconvenience. <br>Please reload the page and try again.
             </p>
           </div>
+
+          <noscript>
+            <div class="noscript alert alert-warning text-center">
+              <p><strong>Javascript is required</strong></p><hr>
+              <p>We are sorry but <strong>ZippLink</strong> doesn't work properly without Javascript enabled.<br>
+                 Please enable Javascript on your browser and try again.</p>
+            </div>
+          </noscript>
 
         </div>
       </div>
