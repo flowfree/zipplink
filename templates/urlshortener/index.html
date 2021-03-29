@@ -97,6 +97,9 @@
       .catch(error => {
         if (error.response && error.response.data && error.response.data.long_url) {
           setTextInputError(error.response.data.long_url[0])
+        } else if (error.response.status === 429) {
+          setTextInputError('You only allowed to generate 3 short URLs per minute. ' + 
+                            'If you need more capacity, please contact our support.')
         } else {
           displayServerErrorAlert();
         }
