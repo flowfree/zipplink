@@ -102,8 +102,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+# -------------------------------------------------------------------
 STATIC_URL = '/static/'
+
+# Django REST Framework
+# https://www.django-rest-framework.org/api-guide/settings/
+# -------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'NUM_PROXIES': 0
+}
 
 # Django CORS headers config
 # https://github.com/adamchainz/django-cors-headers
